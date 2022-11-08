@@ -7,10 +7,16 @@ module.exports = {
     extend: {
       colors: {
         'blueAss': '#1A2647',
+        'yellow': '#FF9900',
         'orange': '#FF7A00',
+        'darkBlue': '#11172D',
       },
       maxWidth: {
         '1440': '1440px',
+      },
+      width: {
+        '280': '280px',
+        // '80%': '80%',
       },
     },
   },

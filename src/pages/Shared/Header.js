@@ -1,11 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Banner from "../Home/Banner/Banner";
 
 const Header = () => {
     return (
-        <div>
-            <div className="navbar bg-blueAss text-white">
+            <div className="navbar bg-blueAss pt-3 text-white max-w-1440">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -18,7 +16,7 @@ const Header = () => {
                             <li><Link to='/'>Services</Link></li>
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                    <a className="btn btn-ghost normal-case text-xl"><span className="text-orange">Cloud</span>Kichen</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
@@ -29,11 +27,9 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn bg-orange ">Login</a>
+                    <a className="btn bg-orange mr-5 ">Login</a>
                 </div>
             </div>
-            <Banner></Banner>
-        </div>
 
     );
 }

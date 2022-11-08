@@ -2,10 +2,11 @@ import React from "react";
 
 const Footer = () => {
     return (
-        <div className="">
-            <h1>this is footer</h1>
-
-        </div>
+        <footer className="footer footer-center p-4 bg-black text-base-content">
+            <div>
+                <p className="text-white">Copyright © 2022 - All right reserved by Cloud Kichen.</p>
+            </div>
+        </footer>
     );
 }
 export default Footer;
