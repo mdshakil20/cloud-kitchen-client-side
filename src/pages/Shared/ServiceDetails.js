@@ -16,17 +16,11 @@ const ServiceDetails = () => {
 
     const reviewList = [...allReview].reverse();
 
-    console.log(user);
-    // console.log("Db Reviews",dbReviews);
     console.log(typeof (allReview), );
 
     const handleAddReview = event => {
         event.preventDefault();
         const value = event.target.text.value;
-        // const newReview = { ...userReview };
-        // newReview[field] = value;
-        // setUserReview(newReview);
-
         const sentReview = { text: `${value}`,reviewer_name : `${user.displayName}` , reviewer_email : `${user.email}` , reviewer_img : `${user.photoURL}` };
 
 
@@ -42,14 +36,6 @@ const ServiceDetails = () => {
             .then(data => {
                 if (data.acknowledged) {
                     alert('Successfully Review Send.');
-                    // console.log(sentReview);
-                    // const newAllReview = { ...sentReview ,...allReview };
-
-                    // setAllReview(newAllReview);
-                    // console.log(allReview)
-
-
-
                     event.target.reset();
                 }
             })
