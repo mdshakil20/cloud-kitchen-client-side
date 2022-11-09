@@ -14,6 +14,7 @@ const Header = () => {
                             <li><Link to='/'>Add Review</Link></li>
                             <li><Link to='/'> My services</Link></li>
                             <li><Link to='/'>Services</Link></li>
+                            <li><Link to='/'>Bloge</Link></li>
                         </ul>
                     </div>
                     <a className="btn btn-ghost normal-case text-xl"><span className="text-orange">Cloud</span>Kichen</a>
@@ -24,10 +25,11 @@ const Header = () => {
                         <li><Link to='/'>Add Review</Link></li>
                         <li><Link to='/'> My services</Link></li>
                         <li><Link to='/'>Services</Link></li>
+                        <li><Link to='/'>Bloge</Link></li>
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn bg-orange mr-5 ">Login</a>
+                    <Link to='/login' className="btn bg-orange mr-5 normal-case text-lg">Login/ Sign Up</Link>
                 </div>
             </div>
 

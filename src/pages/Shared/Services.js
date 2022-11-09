@@ -45,7 +45,7 @@ const Services = () => {
                     </div>
                 </div>
             </div>
-            <Link to='/' className="w-1/2 btn bg-orange mr-5 hover:text-black hover:bg-yellow  mb-12 ">See More</Link>
+            <Link to='/' className="w-64 btn bg-orange mr-5 hover:text-black hover:bg-yellow  mb-12 ">See More</Link>
         </div>
 
     );
