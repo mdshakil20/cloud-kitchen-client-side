@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ServiceCard from "./ServiceCard";
-
-const Services = () => {
+const AllService = () => {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/services_3')
+        fetch('http://localhost:5000/services')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
@@ -18,11 +17,8 @@ const Services = () => {
                     services.map(service => <ServiceCard key={service._id} service={service}></ServiceCard>)
                 }
             </div>
-            <Link to='/services' className="w-64 btn bg-orange mr-5 hover:text-black hover:bg-yellow  mb-12 ">See More</Link>
         </div>
 
     );
 }
-export default Services;
-
-// server:https://classroom.github.com/a/y-8jL3e7
+export default AllService;
