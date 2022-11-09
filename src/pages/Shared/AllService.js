@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import ServiceCard from "./ServiceCard";
 const AllService = () => {
     const [services, setServices] = useState([]);
+    console.log(services);
+
 
     useEffect(() => {
         fetch('http://localhost:5000/services')

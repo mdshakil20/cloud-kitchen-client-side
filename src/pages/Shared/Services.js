@@ -24,5 +24,3 @@ const Services = () => {
     );
 }
 export default Services;
-
-// server:https://classroom.github.com/a/y-8jL3e7

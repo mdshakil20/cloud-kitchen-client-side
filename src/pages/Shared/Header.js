@@ -6,7 +6,6 @@ const Header = () => {
     const { user, logOut, setUser } = useContext(AuthContext);
 
     const img = user?.photoURL;
-    console.log(img)
 
     const handleLogOut = () => {
         setUser(null);
