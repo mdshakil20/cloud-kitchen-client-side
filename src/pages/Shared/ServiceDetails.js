@@ -14,20 +14,20 @@ const ServiceDetails = () => {
     const selectedService = useLoaderData()[0];
     const [allReview, setAllReview] = useState(selectedService.reviews);
 
-
+    const reviewList = [...allReview].reverse();
 
     console.log(user);
     // console.log("Db Reviews",dbReviews);
-    console.log(typeof (allReview));
+    console.log(typeof (allReview), );
 
     const handleAddReview = event => {
         event.preventDefault();
-        const value = event.target.review.value;
+        const value = event.target.text.value;
         // const newReview = { ...userReview };
         // newReview[field] = value;
         // setUserReview(newReview);
 
-        const sentReview = { text: `${value}` };
+        const sentReview = { text: `${value}`,reviewer_name : `${user.displayName}` , reviewer_email : `${user.email}` , reviewer_img : `${user.photoURL}` };
 
 
         //data post 
@@ -47,16 +47,14 @@ const ServiceDetails = () => {
 
                     // setAllReview(newAllReview);
                     // console.log(allReview)
-                    fetch(`http://localhost:5000/services/${selectedService._id}`)
-                    .then(res=>res.json())
-                    .then(data =>console.log("Data : ",data))
 
 
-                    console.log(allReview)
 
                     event.target.reset();
                 }
             })
+
+            
     }
 
     return (
@@ -88,7 +86,7 @@ const ServiceDetails = () => {
                                 <>
                                     <img className="rounded-full w-12 h-12" src={user.photoURL} />
                                     <form onSubmit={handleAddReview} className="flex w-full ml-2">
-                                        <input type="text" name="review" className=" bg-white w-full rounded-tl-full rounded-bl-full pl-3" placeholder="Wright your review" />
+                                        <input type="text" name="text" className=" bg-white w-full rounded-tl-full rounded-bl-full pl-3" placeholder="Wright your review" />
                                         <button className="btn normal-case btn-primary bg-blue-600 rounded-tr-full rounded-br-full text-white">Review</button>
                                     </form>
                                 </>
@@ -103,7 +101,7 @@ const ServiceDetails = () => {
                 </div>
                 <div className="w-70% mx-auto">
                     {
-                        allReview.map(rev => <ReviewShow key={rev.reviewer_email} rev={rev}></ReviewShow>)
+                        reviewList.map(rev => <ReviewShow key={rev.reviewer_email} rev={rev}></ReviewShow>)
                     }
                 </div>
             </div>
