@@ -1,10 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
+import AddService from "../pages/AddService/AddService";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import AllService from "../pages/Shared/AllService";
 import ServiceDetails from "../pages/Shared/ServiceDetails";
 import Signup from "../pages/Signup/Signup";
+import PrivateRoute from "./PrivateRoute/PrivateRouter";
 
 export const route = createBrowserRouter([
     {
@@ -26,6 +28,10 @@ export const route = createBrowserRouter([
             {
                 path:'/services',
                 element: <AllService></AllService>
+            },
+            {
+                path:'/add-service',
+                element: <PrivateRoute><AddService></AddService></PrivateRoute>
             },
             {
                 path:'/services/:id',

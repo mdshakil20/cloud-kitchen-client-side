@@ -16,12 +16,12 @@ const ServiceDetails = () => {
 
     const reviewList = [...allReview].reverse();
 
-    console.log(typeof (allReview), );
+    console.log(typeof (allReview),);
 
     const handleAddReview = event => {
         event.preventDefault();
         const value = event.target.text.value;
-        const sentReview = { text: `${value}`,reviewer_name : `${user.displayName}` , reviewer_email : `${user.email}` , reviewer_img : `${user.photoURL}` };
+        const sentReview = { text: `${value}`, reviewer_name: `${user.displayName}`, reviewer_email: `${user.email}`, reviewer_img: `${user.photoURL}` };
 
 
         //data post 
@@ -40,7 +40,7 @@ const ServiceDetails = () => {
                 }
             })
 
-            
+
     }
 
     return (
@@ -58,9 +58,7 @@ const ServiceDetails = () => {
                     <p className="text-left">{selectedService.description}</p>
                     <p className="text-left"><b>Price : ${selectedService.price}</b></p>
                     <p className="text-left"><b>Rating : {selectedService.rating}</b></p>
-                    <div className="card-actions justify-start">
-                        {/* <Link to={`/services/${selectedService._id}`} className="btn bg-orange mr-5 ">Details</Link> */}
-                    </div>
+                    
                 </div>
             </div>
 

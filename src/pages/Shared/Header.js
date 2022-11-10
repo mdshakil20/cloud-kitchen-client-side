@@ -22,13 +22,13 @@ const Header = () => {
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content text-black mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link to='/'>Home</Link></li>
-                        <li><Link to='/'> My services</Link></li>
+                        <li><Link to='/services'> My services</Link></li>
                         <li><Link to='/'>Blog</Link></li>
                         <>
                             {
                                 user?.uid && <span className="">
                                     <li><Link to='/'>My Reviews</Link></li>
-                                    <li><Link to='/'>Add Service</Link></li>
+                                    <li><Link to='/add-service'>Add Service</Link></li>
                                 </span>
                             }
                         </>
@@ -39,13 +39,13 @@ const Header = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
                     <li className="hover:text-yellow"><Link to='/'>Home</Link></li>
-                    <li className="hover:text-yellow"><Link to='/'> My services</Link></li>
+                    <li className="hover:text-yellow"><Link to='/services'> My services</Link></li>
                     <li className="hover:text-yellow"><Link to='/'>Blog</Link></li>
                     <>
                         {
                             user?.uid && <span className="flex">
                                 <li className="hover:text-yellow"><Link to='/'>My Reviews</Link></li>
-                                <li className="hover:text-yellow"><Link to='/'>Add Service</Link></li>
+                                <li className="hover:text-yellow"><Link to='/add-service'>Add Service</Link></li>
                             </span>
                         }
                     </>
