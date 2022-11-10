@@ -1,22 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 
 const MyReview = () => {
-    const { user, setLoading, loading } = useContext(AuthContext);
+    const { user} = useContext(AuthContext);
     const savedReview = useLoaderData();
-
     const [displayReviews, setDisplayReviews] = useState(savedReview);
-
+    useTitle('My Review');
 
     const reviewEditHandle = event => {
         console.log(event.target.value)
 
     }
+    //for delete review
     const reviewDeleteHandle = event => {
         const id = event.target.value;
         const agree = window.confirm(`Are you sure to delete it.`);
-
+        
         if (agree) {
             fetch(`https://y-puce-two.vercel.app/review/delete/${id}`, {
                 method: 'DELETE'

@@ -1,10 +1,12 @@
 import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
+import Home from "../Home/Home";
 
 const Login = () => {
-    const { signIn, setLoading, providerLogin } = useContext(AuthContext);
+    const { signIn,loading, setLoading, providerLogin } = useContext(AuthContext);
+    console.log(loading)
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
@@ -18,8 +20,14 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         providerLogin(GoogleProvider)
             .then(result => {
+                setLoading(false);
                 const user = result.user;
+                alert('Login successfully');
+                {user.email && (
+                    <Navigate to="/" replace={true} />
+                  )}
                 console.log(user);
+                
             })
             .catch(error => console.error(error))
     }
@@ -30,13 +38,15 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-
+        alert('Login successfully');
         signIn(email, password)
             .then(result => {
                 const user = result.user;
-                if(user.email){
-                    navigate(from, {replace: true});
-                }
+                setLoading(false);
+
+                {user && (
+                    <Navigate to="/" replace={true} />
+                  )}
                 console.log(user);
                 form.reset();
                 setError('');
@@ -46,9 +56,6 @@ const Login = () => {
             })
             .catch(error => {
                 console.error(error)
-                // if(error.message = 'Firebase: Error (auth/invalid-email)'){
-                //     navigate(from, {replace: true});
-                // }
                 setError(error.message);
 
                 
@@ -59,6 +66,9 @@ const Login = () => {
     }
     return (
         <div className="hero min-h-screen bg-blueAss text-white">
+            {loading === true ?
+                <div className="w-full my-24 bg-blueAss"><div className="w-16 h-16 border-4 ml-5 border-dashed rounded-full animate-spin dark:border-violet-400"></div></div>
+                 :
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left lg:w-1/2">
                     <h1 className="text-5xl font-bold">Login now!</h1>
@@ -91,7 +101,7 @@ const Login = () => {
                         </div>
                     </div>
                 </form>
-            </div>
+            </div> }
         </div>
     );
 }

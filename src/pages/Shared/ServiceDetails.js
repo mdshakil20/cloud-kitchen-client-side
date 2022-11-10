@@ -5,15 +5,13 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { AuthContext } from "../../contexts/AuthProvider";
 import ReviewShow from "../ReviewShow";
+import useTitle from "../../hooks/useTitle";
 
 
 const ServiceDetails = () => {
-
-
-    const { user, loading, setLoading, } = useContext(AuthContext);
-
+    useTitle('All Service');
+    const { user } = useContext(AuthContext);
     const selectedService = useLoaderData()[0];
-
 
     const [allReview, setAllReview] = useState([]);
     console.log(selectedService);

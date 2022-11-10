@@ -1,6 +1,8 @@
 import React from "react";
+import useTitle from "../../hooks/useTitle";
 
 const AddService = () => {
+    useTitle("Add service");
     const addServiceHandler =event =>{
         
         event.preventDefault();
