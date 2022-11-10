@@ -6,6 +6,7 @@ import Login from "../pages/Login/Login";
 import MyReview from "../pages/MyReview/MyReview";
 import AllService from "../pages/Shared/AllService";
 import Blogs from "../pages/Shared/Blogs";
+import NotFound from "../pages/Shared/NotFound";
 import ServiceDetails from "../pages/Shared/ServiceDetails";
 import Signup from "../pages/Signup/Signup";
 import PrivateRoute from "./PrivateRoute/PrivateRouter";
@@ -49,6 +50,10 @@ export const route = createBrowserRouter([
                 element: <ServiceDetails></ServiceDetails>,
                 loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`),
             },
+            {
+                path: '*',
+                element: <NotFound></NotFound>
+            }
         ]
     }
 ])
