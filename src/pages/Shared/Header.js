@@ -27,7 +27,7 @@ const Header = () => {
                         <>
                             {
                                 user?.uid && <span className="">
-                                    <li><Link to='/'>My Reviews</Link></li>
+                                    <li><Link to='/my-reviews'>My Reviews</Link></li>
                                     <li><Link to='/add-service'>Add Service</Link></li>
                                 </span>
                             }
@@ -44,7 +44,7 @@ const Header = () => {
                     <>
                         {
                             user?.uid && <span className="flex">
-                                <li className="hover:text-yellow"><Link to='/'>My Reviews</Link></li>
+                                <li className="hover:text-yellow"><Link to='/my-reviews'>My Reviews</Link></li>
                                 <li className="hover:text-yellow"><Link to='/add-service'>Add Service</Link></li>
                             </span>
                         }

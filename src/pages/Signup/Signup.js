@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Signup = () => {
     const { createUser, updateUserProfile } = useContext(AuthContext);
+    const [err, setErr] = useState('');
 
     const signupBtnHandle = event => {
         event.preventDefault();
@@ -17,11 +18,12 @@ const Signup = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setErr('');
                 form.reset();
                 handleUpdateUserProfile(name, photoURL);
             })
             .catch(e => {
-                console.error(e);
+                setErr(e.message);
             })
 
     }
@@ -33,7 +35,7 @@ const Signup = () => {
         
         updateUserProfile(profile)
             .then(() => { })
-            .catch(error => console.error(error));
+            .catch(error => setErr(error.message));
     }
     return (
         <div className="hero min-h-screen bg-blueAss text-white">
@@ -71,8 +73,9 @@ const Signup = () => {
                                 <Link className="label-text-alt link link-hover text-base">Forgot password?</Link>
                             </label>
                             <label className="label">
-                            <p className="label-text-alt text-left text-base ">Already have an account ?<Link to='/login' className="link link-hover text-orange"> Login</Link> </p>
+                            <p className=" label-text-alt text-left text-base ">Already have an account ?<Link to='/login' className="link link-hover text-orange"> Login</Link> </p>
                             </label>
+                            <p className="text-orange label-text-alt text-left text-base ">{err}</p>
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn bg-orange">Signup</button>
