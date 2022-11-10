@@ -23,7 +23,7 @@ const AddService = () => {
 
 
         //data post 
-        fetch('http://localhost:5000/add-service', {
+        fetch('https://y-puce-two.vercel.app/add-service', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

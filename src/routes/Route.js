@@ -13,42 +13,42 @@ import PrivateRoute from "./PrivateRoute/PrivateRouter";
 
 export const route = createBrowserRouter([
     {
-        path:'/',
-        element:<Main></Main>,
+        path: '/',
+        element: <Main></Main>,
         children: [
             {
-                path:'/',
+                path: '/',
                 element: <Home></Home>
             },
             {
-                path:'/login',
+                path: '/login',
                 element: <Login></Login>
             },
             {
-                path:'/singup',
+                path: '/singup',
                 element: <Signup></Signup>
             },
             {
-                path:'/blog',
+                path: '/blog',
                 element: <Blogs></Blogs>
             },
             {
-                path:'/services',
+                path: '/services',
                 element: <AllService></AllService>
             },
             {
-                path:'/add-service',
+                path: '/add-service',
                 element: <PrivateRoute><AddService></AddService></PrivateRoute>
             },
             {
-                path:'/my-reviews/:email',
+                path: '/my-reviews/:email',
                 element: <PrivateRoute><MyReview></MyReview></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/services/my-reviews/${params.email}`)
+                loader: ({ params }) => fetch(`https://y-puce-two.vercel.app/services/my-reviews/${params.email}`)
             },
             {
-                path:'/services/:id',
+                path: '/services/:id',
                 element: <ServiceDetails></ServiceDetails>,
-                loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`),
+                loader: ({ params }) => fetch(`https://y-puce-two.vercel.app/services/${params.id}`),
             },
             {
                 path: '*',

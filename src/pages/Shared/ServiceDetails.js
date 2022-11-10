@@ -20,7 +20,7 @@ const ServiceDetails = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/services/review/${selectedService._id}`)
+        fetch(`https://y-puce-two.vercel.app/services/review/${selectedService._id}`)
             .then(res => res.json())
             .then(data => setAllReview(data))
     }, [])
@@ -38,7 +38,7 @@ const ServiceDetails = () => {
 
 
         //data post 
-        fetch(`http://localhost:5000/services/review/addReview`, {
+        fetch(`https://y-puce-two.vercel.app/services/review/addReview`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -49,7 +49,7 @@ const ServiceDetails = () => {
             .then(data => {
                 if (data.acknowledged) {
                     alert('Successfully Review Send.');
-                    fetch(`http://localhost:5000/services/review/${selectedService._id}`)
+                    fetch(`https://y-puce-two.vercel.app/services/review/${selectedService._id}`)
                         .then(res => res.json())
                         .then(data => setAllReview(data))
                     event.target.reset();

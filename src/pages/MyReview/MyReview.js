@@ -18,7 +18,7 @@ const MyReview = () => {
         const agree = window.confirm(`Are you sure to delete it.`);
 
         if (agree) {
-            fetch(`http://localhost:5000/review/delete/${id}`, {
+            fetch(`https://y-puce-two.vercel.app/review/delete/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
