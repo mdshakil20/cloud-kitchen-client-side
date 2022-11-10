@@ -7,6 +7,8 @@ const Blogs = () => {
         <div className="w-90% mx-auto mb-12">
             <h2 className="text-4xl text-center my-10 text-orange font-bold">Blogs</h2>
             <div className="grid md:grid-cols-2 ">
+
+                {/* blogs list  */}
                 <div className="p-3 m-2">
                     <h2 className="text-2xl my-5 text-orange">Difference between SQL and NoSQL.</h2>
                     <p className="text-white text-justify">SQL is the programming language used to interface with relational databases. (Relational databases model data as records in rows and tables with logical links between them). NoSQL is a class of DBMs that are non-relational and generally do not use SQL.</p>

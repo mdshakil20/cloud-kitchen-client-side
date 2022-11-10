@@ -6,6 +6,7 @@ const AddService = () => {
     const addServiceHandler =event =>{
         
         event.preventDefault();
+        //form input
         const  form= event.target;
         const name = form.name.value;
         const imgURL = form.img.value;
