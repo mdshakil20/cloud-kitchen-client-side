@@ -9,23 +9,36 @@ import ReviewShow from "../ReviewShow";
 
 const ServiceDetails = () => {
 
-    const { user } = useContext(AuthContext);
+
+    const { user, loading, setLoading, } = useContext(AuthContext);
 
     const selectedService = useLoaderData()[0];
-    const [allReview, setAllReview] = useState(selectedService.reviews);
+
+
+    const [allReview, setAllReview] = useState([]);
+    console.log(selectedService);
+
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/services/review/${selectedService._id}`)
+            .then(res => res.json())
+            .then(data => setAllReview(data))
+    }, [])
+
+
 
     const reviewList = [...allReview].reverse();
 
-    console.log(typeof (allReview),);
+
 
     const handleAddReview = event => {
         event.preventDefault();
         const value = event.target.text.value;
-        const sentReview = { text: `${value}`, reviewer_name: `${user.displayName}`, reviewer_email: `${user.email}`, reviewer_img: `${user.photoURL}` };
+        const sentReview = { service_id: `${selectedService._id}`, service_name: `${selectedService.name}`, text: `${value}`, reviewer_name: `${user.displayName}`, reviewer_email: `${user.email}`, reviewer_img: `${user.photoURL}` };
 
 
         //data post 
-        fetch(`http://localhost:5000/services/review/${selectedService._id}`, {
+        fetch(`http://localhost:5000/services/review/addReview`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -36,6 +49,9 @@ const ServiceDetails = () => {
             .then(data => {
                 if (data.acknowledged) {
                     alert('Successfully Review Send.');
+                    fetch(`http://localhost:5000/services/review/${selectedService._id}`)
+                        .then(res => res.json())
+                        .then(data => setAllReview(data))
                     event.target.reset();
                 }
             })
@@ -58,7 +74,7 @@ const ServiceDetails = () => {
                     <p className="text-left">{selectedService.description}</p>
                     <p className="text-left"><b>Price : ${selectedService.price}</b></p>
                     <p className="text-left"><b>Rating : {selectedService.rating}</b></p>
-                    
+
                 </div>
             </div>
 
@@ -85,7 +101,7 @@ const ServiceDetails = () => {
                 </div>
                 <div className="w-70% mx-auto">
                     {
-                        reviewList.map(rev => <ReviewShow key={rev.reviewer_email} rev={rev}></ReviewShow>)
+                        reviewList.map(rev => <ReviewShow key={rev._id} rev={rev}></ReviewShow>)
                     }
                 </div>
             </div>

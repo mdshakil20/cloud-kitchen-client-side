@@ -1,49 +1,77 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const MyReview = () => {
-    const { user } = useContext(AuthContext);
-    const [myReviews, setMyReviews] = useState([]);
-    // console.log(myReviews)
+    const { user, setLoading, loading } = useContext(AuthContext);
+    const savedReview = useLoaderData();
 
-    useEffect(() => {
-        fetch(`http://localhost:5000/services/my-reviews/${user.email}`)
-            .then(res => res.json())
-            .then(data => setMyReviews(data));
-    }, [])
+    const [displayReviews, setDisplayReviews] = useState(savedReview);
+
+
+    const reviewEditHandle = event => {
+        console.log(event.target.value)
+
+    }
+    const reviewDeleteHandle = event => {
+        const id = event.target.value;
+        const agree = window.confirm(`Are you sure to delete it.`);
+
+        if (agree) {
+            fetch(`http://localhost:5000/review/delete/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.deletedCount > 0){
+                        alert('deleted successfully.');
+                        const remainingReviews = displayReviews.filter(rvw => rvw._id !== id);
+                        setDisplayReviews(remainingReviews);
+                    }
+                }
+                )
+        }
+    }
+
     return (
-        <div className="w-80% md:w-60% mx-auto mb-24">
-            <h1 className="text-3xl  my-12 font-bold text-orange text-center">My Reviews</h1>
-            <div className="overflow-x-auto">
-                <table className="table table-zebra w-full">
-                    <thead>
-                        <tr>
-                            <th>Service Name</th>
-                            <th>My Review</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            myReviews.map(myRevew =>
-                                <tr>
-                                    <td>{myRevew.name}</td>
-                                    <td>{myRevew.reviews.map(r =>
-                                        r.reviewer_email == user.email && <span>{r.text}</span>
-                                    )}</td>
-                                    <td>
-                                        <button className="btn btn-circle">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                                        </button>
-                                    </td>
-                                </tr>
-                            )
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <div className="w-80% md:w-70% mx-auto mb-24">
 
+            <h1 className="text-3xl  my-12 font-bold text-orange text-center">My Reviews</h1>
+
+            {
+                displayReviews.length >= 1 ?
+                    <div className="overflow-x-auto">
+                        <table className="table table-zebra w-full">
+                            <thead>
+                                <tr>
+                                    <th>Service Name</th>
+                                    <th>My Review</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    displayReviews.map(myRevew =>
+                                        <tr key= {myRevew._id}>
+                                            <td>{myRevew.service_name}</td>
+                                            <td>{myRevew.text}</td>
+                                            
+                                            <td>
+                                                <button onClick={reviewEditHandle} value={myRevew._id} className="btn btn-primary">Edit</button>
+                                                <button onClick={reviewDeleteHandle} value={myRevew._id} className="btn ml-2 btn-secondary">Delete</button>
+                                            </td>
+                                        </tr>
+                                    )
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    :
+                    <div>
+                        <h1 className="text-2xl  my-12 font-bold text-orange text-center">No Review Found...</h1>
+                    </div>
+            }
+        </div>
     );
 }
 
